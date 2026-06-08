@@ -3,8 +3,8 @@ package teams_api_test
 import (
 	"bytes"
 	"fmt"
-	teams_api "github.com/fossteams/teams-api"
-	"github.com/fossteams/teams-api/pkg/csa"
+	teams_api "github.com/saimon-moore/teams-api"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/logrusorgru/aurora"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/net/html"

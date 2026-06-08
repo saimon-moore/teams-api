@@ -45,8 +45,9 @@ or:
 MS_TEAMS_GRAPH_TOKEN
 ```
 
-The token is intended for delegated Microsoft Graph calendar read access and is
-currently used by the small `pkg/graph` client for `GET /v1.0/me/calendar/events`.
+The token is intended for delegated Microsoft Graph calendar access and is
+currently used by the `pkg/graph` client for calendar discovery, time-windowed
+event listing, and event CRUD operations.
 
 Example:
 
@@ -57,17 +58,29 @@ if err != nil {
 }
 
 calendarClient := graph.NewCalendarClient(http.DefaultClient, graphToken)
-events, err := calendarClient.ListMyEvents()
+calendars, err := calendarClient.ListCalendars()
 if err != nil {
 	panic(err)
 }
 
-fmt.Printf("loaded %d events\n", len(events))
+events, err := calendarClient.ListEvents(graph.ListEventsOptions{
+	Start: time.Now().UTC(),
+	End:   time.Now().UTC().Add(7 * 24 * time.Hour),
+})
+if err != nil {
+	panic(err)
+}
+
+fmt.Printf("loaded %d calendars and %d events\n", len(calendars), len(events))
 ```
 
 This Graph auth path is experimental. The existing `teams-token` Electron flow was
 originally built for Teams-specific audiences, so Microsoft Graph consent or client
 compatibility issues may still require a dedicated Graph app registration later.
+
+Write operations such as `CreateEvent`, `UpdateEvent`, and `DeleteEvent` require
+the extracted Graph token to carry delegated write scope such as
+`Calendars.ReadWrite`.
 
 
 ### Testing out

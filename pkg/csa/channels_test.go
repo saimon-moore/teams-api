@@ -2,7 +2,8 @@ package csa_test
 
 import (
 	"fmt"
-	"github.com/fossteams/teams-api/pkg/csa/models"
+	api "github.com/saimon-moore/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -12,8 +13,28 @@ func DebugSave() bool {
 	return os.Getenv("TEAMS_DEBUG_SAVE") == "1"
 }
 
+func initTest(t *testing.T) *csa.CSASvc {
+	token, err := api.GetChatSvcAggToken()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	skypeToken, err := api.GetSkypeToken()
+	if err != nil {
+		t.Fatalf("unable to get Skype Token: %v", err)
+	}
+	skypeToken.Type = api.TokenSkype
+
+	csaSvc, err := csa.NewCSAService(token, skypeToken)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return csaSvc
+}
+
 func TestGetMessagesByChannel(t *testing.T) {
-	csaSvc := models.initTest(t)
+	csaSvc := initTest(t)
 	csaSvc.DebugSave(DebugSave())
 
 	conversations, err := csaSvc.GetConversations()
@@ -34,7 +55,7 @@ func TestGetMessagesByChannel(t *testing.T) {
 }
 
 func TestGetPinnedChannels(t *testing.T) {
-	csaSvc := models.initTest(t)
+	csaSvc := initTest(t)
 	csaSvc.DebugSave(DebugSave())
 
 	pinnedChannels, err := csaSvc.GetPinnedChannels()

@@ -2,12 +2,12 @@ package teams_api
 
 import (
 	"fmt"
-	"github.com/fossteams/teams-api/pkg/csa"
-	"github.com/fossteams/teams-api/pkg/models"
-	"github.com/fossteams/teams-api/pkg/mt"
+	"github.com/saimon-moore/teams-api/pkg/csa"
+	"github.com/saimon-moore/teams-api/pkg/models"
+	"github.com/saimon-moore/teams-api/pkg/mt"
 	"net/http"
 )
-import "github.com/fossteams/teams-api/pkg"
+import "github.com/saimon-moore/teams-api/pkg"
 
 type TeamsClient struct {
 	httpClient *http.Client

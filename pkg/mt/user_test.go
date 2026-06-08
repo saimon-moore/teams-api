@@ -3,9 +3,9 @@ package mt_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/fossteams/teams-api/pkg"
-	"github.com/fossteams/teams-api/pkg/models"
-	"github.com/fossteams/teams-api/pkg/mt"
+	"github.com/saimon-moore/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg/models"
+	"github.com/saimon-moore/teams-api/pkg/mt"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
@@ -18,7 +18,12 @@ func initTest(t *testing.T) *mt.Service {
 		t.Error(err)
 	}
 
-	userSvc, err := mt.NewMiddleTierService(api.Emea, token)
+	teamsToken, err := api.GetTeamsToken()
+	if err != nil {
+		t.Error(err)
+	}
+
+	userSvc, err := mt.NewMiddleTierService(api.Emea, token, teamsToken)
 
 	if err != nil {
 		t.Error(err)

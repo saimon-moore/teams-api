@@ -2,8 +2,8 @@ package models_test
 
 import (
 	"fmt"
-	"github.com/fossteams/teams-api/pkg"
-	"github.com/fossteams/teams-api/pkg/csa"
+	"github.com/saimon-moore/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg/csa"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
