@@ -23,12 +23,51 @@ the tokens necessary for this library to work.
 Simply clone and `yarn start` that repository to get your Teams tokens stored into:
 ```bash
 /home/user/.config/fossteams/token-chatsvcagg.jwt
+/home/user/.config/fossteams/token-graph.jwt
 /home/user/.config/fossteams/token-skype.jwt
 /home/user/.config/fossteams/token-teams.jwt
 ```
 
 With these tokens, you'll be able to test out some features like the
 `GetConversations` test that retrieves a list of Teams your user is connected with.
+
+### Experimental Graph calendar token
+
+This repository can also load an experimental Microsoft Graph token from either:
+
+```bash
+/home/user/.config/fossteams/token-graph.jwt
+```
+
+or:
+
+```bash
+MS_TEAMS_GRAPH_TOKEN
+```
+
+The token is intended for delegated Microsoft Graph calendar read access and is
+currently used by the small `pkg/graph` client for `GET /v1.0/me/calendar/events`.
+
+Example:
+
+```go
+graphToken, err := api.GetGraphToken()
+if err != nil {
+	panic(err)
+}
+
+calendarClient := graph.NewCalendarClient(http.DefaultClient, graphToken)
+events, err := calendarClient.ListMyEvents()
+if err != nil {
+	panic(err)
+}
+
+fmt.Printf("loaded %d events\n", len(events))
+```
+
+This Graph auth path is experimental. The existing `teams-token` Electron flow was
+originally built for Teams-specific audiences, so Microsoft Graph consent or client
+compatibility issues may still require a dedicated Graph app registration later.
 
 
 ### Testing out
