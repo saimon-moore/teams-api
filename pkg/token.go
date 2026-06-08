@@ -68,6 +68,10 @@ func GetChatSvcAggToken() (*TeamsToken, error) {
 	return getToken("chatsvcagg")
 }
 
+func GetGraphToken() (*TeamsToken, error) {
+	return getToken("graph")
+}
+
 func getToken(tokenType string) (*TeamsToken, error) {
 	tokenStr := os.Getenv("MS_TEAMS_" + strings.ToUpper(tokenType) + "_TOKEN")
 	if tokenStr == "" {
