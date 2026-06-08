@@ -2,7 +2,7 @@ package csa
 
 import (
 	"fmt"
-	"github.com/fossteams/teams-api/pkg"
+	"github.com/saimon-moore/teams-api/pkg"
 	"io"
 	"net/http"
 	"net/url"

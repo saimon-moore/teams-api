@@ -3,9 +3,9 @@ package csa
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/fossteams/teams-api/pkg/errors"
-	"github.com/fossteams/teams-api/pkg/models"
-	"github.com/fossteams/teams-api/pkg/util"
+	"github.com/saimon-moore/teams-api/pkg/errors"
+	"github.com/saimon-moore/teams-api/pkg/models"
+	"github.com/saimon-moore/teams-api/pkg/util"
 	"io"
 	"net/http"
 	"net/url"

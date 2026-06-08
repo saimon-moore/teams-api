@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/fossteams/teams-api/pkg/errors"
+	"github.com/saimon-moore/teams-api/pkg/errors"
 	"io"
 	"net/http"
 	"reflect"
