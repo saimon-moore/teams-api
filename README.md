@@ -18,7 +18,7 @@ For this you'll need a couple of Microsoft Teams tokens.
 
 ### Obtaining a token
 
-Using [teams-token](https://github.com/saimon=moore/teams-token) one can obtain (and automatically save)
+Using [teams-token](https://github.com/saimon-moore/teams-token) one can obtain (and automatically save)
 the tokens necessary for this library to work.  
 Simply clone and `yarn start` that repository to get your Teams tokens stored into:
 ```bash
